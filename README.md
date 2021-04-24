@@ -15,7 +15,7 @@ const {pause,schemaVersion} = require("@dalongrong/cubejs-schemaversion-cache")
 
 // one demo func 
 async function fetchVersion(securityContext){
-  pause(3000)
+  await pause(3000)
   console.log("call version")
   return `"dalong"---${parseInt(Math.random()*100)}`
 }
