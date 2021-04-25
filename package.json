@@ -2,7 +2,7 @@
   "name": "@dalongrong/cubejs-schemaversion-cache",
   "description": "Cube.js schemaversion-cache database driver",
   "author": "rongfengliang",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "public": true,
   "repository": {
     "type": "git",
@@ -13,10 +13,8 @@
   },
   "main": "index.js",
   "dependencies": {
-    "async-utility": "^1.1.4",
     "cache-manager": "^3.4.3",
-    "cache-manager-ioredis": "^2.1.0",
-    "do-sync": "^3.0.2"
+    "cache-manager-ioredis": "^2.1.0"
   },
   "license": "Apache-2.0",
   "publishConfig": {
