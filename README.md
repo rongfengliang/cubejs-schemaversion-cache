@@ -20,7 +20,7 @@ async function fetchVersion(securityContext){
   return `"dalong"---${parseInt(Math.random()*100)}`
 }
 module.exports = {
-  schemaVersion: async ({ securityContext }) =>{
+  schemaVersion:  ({ securityContext }) =>{
     return schemaVersion(securityContext,fetchVersion)
   },
   contextToAppId: ({ securityContext }) => {

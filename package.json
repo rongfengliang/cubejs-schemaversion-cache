@@ -13,8 +13,10 @@
   },
   "main": "index.js",
   "dependencies": {
+    "async-utility": "^1.1.4",
     "cache-manager": "^3.4.3",
-    "cache-manager-ioredis": "^2.1.0"
+    "cache-manager-ioredis": "^2.1.0",
+    "do-sync": "^3.0.2"
   },
   "license": "Apache-2.0",
   "publishConfig": {

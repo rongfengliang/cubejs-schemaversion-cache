@@ -1,6 +1,7 @@
 const cacheManager = require('cache-manager');
 const crypto = require('crypto');
-const redisStore = require('cache-manager-ioredis');
+const redisStore = require('cache-manager-ioredis'); 
+const AsyncUtil = require('async-utility').default;
 const redisCache = cacheManager.caching({
   store: redisStore,
   host: process.env.REDIS_HOST || "localhost", // default value
@@ -17,12 +18,17 @@ const redisCache = cacheManager.caching({
 function pause(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+async function asyncFetchVersion(securityContext,func){
+ let cachekey = `SCHEMAVERSION_${crypto.createHash('md5').update(JSON.stringify(securityContext)).digest('hex')}`
+ return redisCache.wrap(cachekey, function() {
+    return func(securityContext);
+  })
+} 
 module.exports = {
-    schemaVersion: async (securityContext,func)=> {
-         let cachekey = `SCHEMAVERSION_${crypto.createHash('md5').update(JSON.stringify(securityContext)).digest('hex')}`
-         return redisCache.wrap(cachekey, function() {
-          return func(securityContext);
-        });
+    schemaVersion:  (securityContext,func)=> {
+      // use async-utility convert async to sync
+      return  AsyncUtil.resolvePromise(asyncFetchVersion(securityContext,func));
     },
     pause:pause
 }
