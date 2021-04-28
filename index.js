@@ -26,7 +26,7 @@ module.exports = {
       return func(securityContext);
     });
   },
-  ValidateKey: async (jwt,func) => {
+  validateKey: async (jwt,func) => {
     // cache key with jwt md5 
     let cachekey = `JWTKEY_${crypto.createHash('md5').update(JSON.stringify(jwt)).digest('hex')}`
     return  redisCache.wrap(cachekey, function () {
