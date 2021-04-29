@@ -7,7 +7,7 @@ const redisCache = cacheManager.caching({
   host: process.env.REDIS_HOST ||  'localhost', // default value
   port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379, // default value
   db:  process.env.REDIS_DB ? parseInt(process.env.REDIS_DB) : 0,
-  password: process.env.REDIS_DB.REDIS_PASS || null,
+  password: process.env.REDIS_PASS || null,
   ttl: process.env.REDIS_TTL ? parseInt(process.env.REDIS_TTL) : 300
 });
 /**
