@@ -26,6 +26,12 @@ module.exports = {
       return func(securityContext);
     });
   },
+  filterCondition: async (securityContext, func) => {
+    let cachekey = `FILTERCONDITION${crypto.createHash('md5').update(JSON.stringify(securityContext)).digest('hex')}`
+    return redisCache.wrap(cachekey, function () {
+      return func(securityContext);
+    });
+  },
   validateKey: async (jwt, func) => {
     // cache key with jwt md5 
     let cachekey = `JWTKEY_${crypto.createHash('md5').update(JSON.stringify(jwt)).digest('hex')}`
